@@ -5,10 +5,10 @@ import MySQLdb
 import datetime
 import memcache
 
-DB_SERVER = 'rohinknearest.c4s4azcwyidc.us-west-2.rds.amazonaws.com'
-DB_USERNAME = 'rohin'
-DB_PASSWORD = 'cloudcomputing'
-DB_DATABASE = 'rohinrds'
+DB_SERVER = 'cloudserverName'
+DB_USERNAME = 'username'
+DB_PASSWORD = 'password'
+DB_DATABASE = 'databasename'
 
 app = Flask(__name__)
 
@@ -62,7 +62,7 @@ def get_cities_based_on_distance():
                         sql_query = 'call GEO_KNEAREST(\'' + city + '\',\'' + country + '\',\'' + region + '\',\'' + str(distance) + '\',\'' + knear + '\')'
                 dbcon = connection_mysql()
 				dbcursor = dbcon.cursor()
-                memc = memcache.Client(['rohinrdscachce.xb4e6q.cfg.usw2.cache.amazonaws.com:11211'])
+                memc = memcache.Client(['memecachenamelist'])
                 diff1 = datetime.datetime.now()
                 cont = memc.get(key)
                 if not cont:
