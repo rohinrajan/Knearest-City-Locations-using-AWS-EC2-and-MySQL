@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h1> Welcome to finding the closest cities </h1>
+<p> Enter City name, Country and region </p>
+<dl style="color: blue;"> Options </dl>
+<dd style="color: red;"> 1. Enter Distance </dd>
+                <p style="padding-left : 50px;"> or </p>
+<dd style="color: green;"> 2. Enter the number of nearest neighbours </dd>
+</dl>
+<form role="form" action="/kdistance" method=post style= "padding-top : 50px">
+        <table border="1" style="background-color: #DDDDDD;">
+                <tr>
+                        <td> City </td>
+                        <td> <input type=text name=kcity value= "{{ request.form['kcity'] }}"> </td>
+                        <td> Country </td>
+                        <td> <input type=text name=kcountry value="{{ request.form['kcountry'] }}"> </td>
+                        <td> Region </td>
+                        <td> <input type=text name=kregion value= "{{ request.form['kregion'] }}"> </td>
+                </tr>
+				<tr>
+                        <td> Distance:</td>
+                        <td> <input type=text name=kdistance value="{{ request.form['kdistance'] }}"> </td>
+                        <td> No of Cities:</td>
+                        <td> <input type=text name=kcities value="{{ request.form['kcities'] }}"> </td>
+                </tr>
+        </table>
+    <p style="padding-left:200px"><input type=submit value=search style="width: 170px;"></p>
+</form>
+
+{% if content %}
+<table>
+        <tr>
+                <th> Country </th>
+                <th> City </th>
+                <th> AccentCity </th>
+                <th> Region </th>
+                <th> Population </th>
+                <th> Latitude </th>
+                <th> Longitude </th>
+		 </tr>
+        {% for result in content%}
+        <tr>
+                <td> {{ result[0] }} </td>
+                <td> {{ result[1] }} </td>
+                <td> {{ result[2] }} </td>
+                <td> {{ result[3] }} </td>
+                <td> {{ result[4] }} </td>
+                <td> {{ result[5] }} </td>
+                <td> {{ result[6] }} </td>
+                <td> {{ result[7] }} </td>
+        </tr>
+        {% endfor %}
+</table>
+
+<p> time taken is : {{ time  }} </p>
+<p> rowcount is : {{ rows  }} </p>
+{% endif %}
+</body>
+</html>
